@@ -81,9 +81,9 @@ namespace WCFServerConsole
             //
 
 
-            //加入拦截行为
-            var endpoint = h.AddServiceEndpoint(interType, binding, "");
-            endpoint.Behaviors.Add(new MyEndPointBehavior());
+            ////加入拦截行为
+            //var endpoint = h.AddServiceEndpoint(interType, binding, "");
+            //endpoint.Behaviors.Add(new MyEndPointBehavior());
 
 
 

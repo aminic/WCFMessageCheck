@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,10 +20,19 @@ namespace WCFClientConsole
                 var baseAddress = "http://localhost:999";
                 var c = new WSClient(baseAddress);
                 var s = c.GetService<IMyService>();
+                //-1.传递附加信息
+                using (OperationContextScope scope = new OperationContextScope(s as IContextChannel))
+                {
+                    var user = new UserInfo { LoginName = "xman", Password = "password is password" };
+                    var header = MessageHeader.CreateHeader("userinfo", "check", user);
+                    OperationContext.Current.OutgoingMessageHeaders.Add(header);
+                    s.TestGetHeaderMethod();
+                }
+
 
                 //0.无效除
-                var r = s.Divide(10, 0);
-                Console.WriteLine($"相除结果:{r}");
+                //var r = s.Divide(10, 0);
+                //Console.WriteLine($"相除结果:{r}");
                 //1.调用带元数据参数和返回值的操作
                 //var result = s.AddInt(20, 20);
                 //Console.WriteLine($"20+20= {result}");

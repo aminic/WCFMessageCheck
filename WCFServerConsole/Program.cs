@@ -118,6 +118,16 @@ namespace WCFServerConsole
             }
             return rmsg;
         }
+
+        public void TestGetHeaderMethod()
+        {
+            int index = OperationContext.Current.IncomingMessageHeaders.FindHeader("userinfo", "check");
+            if (index != -1)
+            {
+                var user = OperationContext.Current.IncomingMessageHeaders.GetHeader<UserInfo>(index);
+                Console.WriteLine($"用户信息：{user.LoginName} {user.Password}");
+            }
+        }
     }
 
 

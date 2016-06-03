@@ -21,5 +21,8 @@ namespace MyLib
 
         [OperationContract]
         int Divide(int x, int y);
+
+        [OperationContract]
+        void TestGetHeaderMethod();
     }
 }

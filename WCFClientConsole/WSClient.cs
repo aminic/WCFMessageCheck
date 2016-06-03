@@ -35,7 +35,7 @@ namespace WCFClientConsole
             EndpointAddress endpointAddress = new EndpointAddress(url);
             ChannelFactory<T> factory = new ChannelFactory<T>(new BasicHttpBinding(), endpointAddress);
             //加入拦截行为
-            factory.Endpoint.EndpointBehaviors.Add(new MyEndPointBehavior());
+            //factory.Endpoint.EndpointBehaviors.Add(new MyEndPointBehavior());
             return factory.CreateChannel();
         }
 
